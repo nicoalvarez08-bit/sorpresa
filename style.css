@@ -1,0 +1,552 @@
+/* =====================================================
+    CONFIGURACIÓN GLOBAL Y RESET
+===================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #090a0f;
+    color: #fff;
+    font-family: "-apple-system", BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+.screen {
+    position: absolute;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* =====================================================
+    PANTALLA DE LOGO (DISEÑO MINIMALISTA PREMIUM)
+===================================================== */
+#logo-screen { 
+    background: #000; 
+}
+.logo { 
+    font-size: 64px; 
+    font-weight: 200; 
+    letter-spacing: 14px; 
+    text-transform: uppercase; 
+    color: #fff; 
+    animation: smoothPulse 3s ease-in-out infinite alternate;
+}
+.subtitle { 
+    margin-top: 24px; 
+    color: rgba(255, 255, 255, 0.4); 
+    letter-spacing: 6px; 
+    font-size: 12px; 
+    text-transform: uppercase; 
+}
+
+/* =====================================================
+    PANTALLA DE BOOT (LISA Y MODERNA)
+===================================================== */
+#boot-screen {
+    background: #000;
+}
+.boot-container { 
+    width: 100%; 
+    max-width: 400px; 
+    text-align: center; 
+}
+.boot-logo { 
+    font-size: 48px; 
+    font-weight: 200; 
+    letter-spacing: 10px; 
+}
+#boot-text { 
+    margin-top: 35px; 
+    color: rgba(255, 255, 255, 0.5); 
+    font-size: 13px; 
+    min-height: 24px; 
+}
+.progress-container { 
+    width: 100%; 
+    height: 3px; 
+    margin-top: 25px; 
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 10px; 
+    overflow: hidden; 
+}
+#progress-bar { 
+    width: 0%; 
+    height: 100%; 
+    background: #fff; 
+    transition: width 0.1s ease; 
+}
+#boot-percent { 
+    margin-top: 15px; 
+    font-size: 14px; 
+    color: rgba(255, 255, 255, 0.3); 
+}
+
+/* =====================================================
+    PANTALLA DE LOGIN (ESTILO MAC SUAVE INTERACTIVO)
+===================================================== */
+#login-screen {
+    background: linear-gradient(-45deg, #16192b, #2b123d, #0d111d, #1a1326);
+    background-size: 400% 400%;
+    animation: macosGradient 14s ease infinite;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 340px;
+    padding: 45px 35px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5), 
+                inset 0 1px 0px rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+}
+
+.avatar-container {
+    width: 84px;
+    height: 84px;
+    margin: 0 auto 20px auto;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.avatar-container svg {
+    width: 40px;
+    height: 40px;
+    fill: rgba(255,255,255,0.5);
+}
+
+#clock { 
+    text-align: center; 
+    font-size: 54px; 
+    font-weight: 200; 
+    color: #fff; 
+    letter-spacing: -1px;
+}
+
+#date { 
+    text-align: center; 
+    margin-top: 4px; 
+    margin-bottom: 35px; 
+    color: rgba(255, 255, 255, 0.5); 
+    font-size: 13px; 
+    text-transform: capitalize; 
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.login-box input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    outline: none;
+    border-radius: 20px;
+    padding: 0 35px 0 15px;
+    font-size: 13px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    text-align: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.login-box input:focus { 
+    border-color: #007aff; 
+    background: rgba(0, 0, 0, 0.35); 
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.15); 
+}
+
+.login-box input::placeholder { color: rgba(255, 255, 255, 0.25); }
+
+.toggle-pass {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.4;
+    font-size: 13px;
+    transition: opacity 0.2s;
+}
+.toggle-pass:hover { opacity: 0.8; }
+
+.login-box button {
+    width: 100%;
+    max-width: 250px;
+    height: 38px;
+    margin: 18px auto 0 auto;
+    display: block;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+.login-box button:hover { 
+    background: #ffffff; 
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+#login-message { text-align: center; margin-top: 22px; min-height: 22px; font-size: 12px; color: rgba(255,255,255,0.6); }
+
+.login-box.shake-error {
+    animation: macShake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes macShake {
+    10%, 90% { transform: translate3d(-2px, 0, 0); }
+    20%, 80% { transform: translate3d(4px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+    40%, 60% { transform: translate3d(6px, 0, 0); }
+}
+
+/* =====================================================
+    PANTALLA DE HACKEO (TERMINAL CON CRT)
+===================================================== */
+#terminal-screen { 
+    background: radial-gradient(circle at center, #010a02 0%, #000000 100%); 
+    padding: 20px; 
+    position: relative; 
+}
+
+#terminal-screen::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.05), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.05));
+    z-index: 999;
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+}
+
+#terminal-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, rgba(57, 255, 20, 0.015) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(57, 255, 20, 0.015) 1px, transparent 1px);
+    pointer-events: none;
+}
+
+.cyber-dashboard {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-rows: 1.1fr 0.9fr;
+    gap: 20px;
+    position: relative;
+}
+
+.panel {
+    background: rgba(2, 8, 3, 0.9);
+    border: 1px solid rgba(57, 255, 20, 0.25);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), inset 0 0 15px rgba(57, 255, 20, 0.03);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+}
+
+.panel-hdr {
+    background: rgba(9, 31, 11, 0.8);
+    color: #39ff14;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 8px 14px;
+    border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+    font-weight: bold;
+    letter-spacing: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+.panel-hdr::after {
+    content: "● LIVE";
+    animation: textBlink 0.8s infinite alternate;
+}
+
+#terminal-output {
+    padding: 15px;
+    color: #39ff14;
+    font-size: 13px;
+    font-family: "Courier New", monospace;
+    overflow-y: auto;
+    flex-grow: 1;
+    line-height: 1.6;
+}
+
+.nodes-display { flex-grow: 1; position: relative; background: rgba(0,0,0,0.3); overflow: hidden; }
+.matrix-rain {
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(57, 255, 20, 0.4);
+    padding: 12px;
+    line-height: 1.4;
+    white-space: pre;
+}
+
+.cyber-banner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000;
+    border: 2px solid #ef4444;
+    padding: 20px 45px;
+    z-index: 1000;
+    box-shadow: 0 0 40px rgba(239, 68, 68, 0.5);
+    display: none;
+    border-radius: 4px;
+}
+.cyber-banner.active { display: block; animation: panelShake 0.15s infinite; }
+.blink-text {
+    color: #ef4444;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 3px;
+    animation: textBlink 0.3s infinite alternate;
+}
+
+.cyber-table { width: 100%; border-collapse: collapse; font-family: monospace; font-size: 11px; color: #7fdf7f; }
+.cyber-table th { background: rgba(4, 20, 6, 0.9); color: #39ff14; padding: 10px 12px; border-bottom: 1px solid rgba(57, 255, 20, 0.2); text-align: left; }
+.cyber-table td { padding: 8px 12px; border-bottom: 1px dashed rgba(57,255,20,0.06); }
+
+.wave-container {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    padding: 30px 40px;
+}
+.wave-bar {
+    width: 14px;
+    height: 15%;
+    background: linear-gradient(to top, #114d0a, #39ff14);
+    border-radius: 2px 2px 0 0;
+    animation: waveMotion 0.3s infinite alternate ease-in-out;
+}
+.wave-bar:nth-child(even) { animation-duration: 0.18s; }
+.wave-bar:nth-child(3n) { animation-duration: 0.4s; }
+
+/* POPUPS FLOTANTES */
+.crypto-popup {
+    position: absolute;
+    width: 270px;
+    background: #000;
+    border: 2px solid #ef4444;
+    box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
+    border-radius: 4px;
+    overflow: hidden;
+    font-family: monospace;
+    z-index: 1001;
+    animation: popupIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), panelShake 0.2s infinite;
+}
+.popup-hdr { background: #ef4444; color: #000; padding: 6px 12px; font-weight: bold; font-size: 11px; }
+.popup-body { padding: 12px; background: rgba(12, 2, 2, 0.96); }
+.popup-txt { color: #ff4444; font-size: 11px; margin-bottom: 8px; }
+.popup-bar-container { width: 100%; height: 5px; background: #1a0505; border-radius: 2px; overflow: hidden; }
+.popup-bar { width: 0%; height: 100%; background: #ef4444; animation: fastLoad 0.4s infinite linear; }
+
+/* =====================================================
+    PANTALLAS DE CAÍDA (GLITCH Y PANTALLA AZUL)
+===================================================== */
+.glitch-container { text-align: center; }
+.glitch { font-size: 80px; font-weight: 900; letter-spacing: 4px; animation: glitch-anim 0.15s infinite linear alternate-reverse; }
+#glitch-text { margin-top: 25px; font-size: 18px; color: #ef4444; font-family: monospace; }
+
+#bsod-screen { background: #004ea8; align-items: flex-start; padding: 12% 15%; font-family: "Segoe UI", sans-serif; }
+.bsod-content { max-width: 700px; }
+.bsod-content h1 { font-size: 120px; font-weight: 300; line-height: 1; }
+.bsod-content h2 { margin-top: 30px; font-size: 24px; font-weight: 300; }
+.bsod-content p { margin-top: 25px; font-size: 16px; color: #daeeff; line-height: 1.6; }
+#bsod-progress { margin-top: 50px; font-size: 20px; }
+
+.restart-screen { background: #000; }
+.restart-content { text-align: center; }
+.loader { width: 44px; height: 44px; border: 3px solid rgba(255,255,255,0.1); border-top: 3px solid #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
+.restart-content h2 { margin-top: 25px; font-size: 18px; font-weight: 300; color: #666; }
+
+/* =====================================================
+    PANTALLA INTERACTIVA "ERA UNA BROMA"
+===================================================== */
+#message-screen {
+    background: #06070d;
+}
+.message-container { text-align: center; max-width: 600px; padding: 40px; }
+#message-text {
+    font-size: 28px;
+    font-weight: 200;
+    line-height: 1.6;
+    background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 35px;
+}
+
+.action-btn-trigger {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0d9488 100%);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(13, 148, 136, 0.25);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity: 0;
+    transform: translateY(10px);
+}
+.action-btn-trigger.reveal {
+    opacity: 1;
+    transform: translateY(0);
+}
+.action-btn-trigger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(13, 148, 136, 0.45);
+    filter: brightness(1.15);
+}
+
+/* =====================================================
+    PANTALLA FINAL MEJORADA (PALETA DE ALTA GAMA)
+===================================================== */
+#birthday-screen { 
+    background: radial-gradient(circle at center, #0f172a 0%, #020617 100%); 
+}
+
+.birthday-container { 
+    text-align: center; 
+    width: 100%;
+    max-width: 480px; 
+    padding: 50px 40px;
+    border-radius: 28px;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.6),
+                inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    animation: premiumFadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+}
+
+/* Emblema XV Premium */
+.badge-XV {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 25px auto;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Times New Roman', serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #d4af37; /* Oro Clásico */
+    letter-spacing: 1px;
+}
+
+.birthday-container h2 { 
+    font-size: 22px; 
+    color: #94a3b8; 
+    font-weight: 400; 
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+#birthday-name { 
+    font-size: 56px; 
+    background: linear-gradient(135deg, #ffffff 30%, #cbd5e1 70%, #d4af37 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700; 
+    margin-top: 5px; 
+    margin-bottom: 25px; 
+    letter-spacing: -1.5px; 
+}
+
+.birthday-container p.main-wishes { 
+    font-size: 16px; 
+    color: #e2e8f0; 
+    line-height: 1.7; 
+    font-weight: 300;
+    margin-bottom: 25px;
+}
+
+.birthday-container p.footer-note {
+    font-size: 12px;
+    color: #64748b;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 20px;
+    line-height: 1.5;
+}
+
+/* =====================================================
+    ANIMACIONES GENERALES
+===================================================== */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes popupIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes textBlink { from { opacity: 0.1; } to { opacity: 1; } }
+@keyframes fastLoad { 0% { width: 0%; } 100% { width: 100%; } }
+@keyframes waveMotion { from { height: 10%; } to { height: 95%; } }
+@keyframes smoothPulse { from { opacity: 0.8; } to { opacity: 1; } }
+
+@keyframes premiumFadeIn { 
+    from { opacity: 0; transform: translateY(30px) scale(0.98); } 
+    to { opacity: 1; transform: translateY(0) scale(1); } 
+}
+
+@keyframes macosGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes panelShake {
+    0% { transform: translate(0, 0); }
+    50% { transform: translate(1px, -1px); }
+    100% { transform: translate(0, 0); }
+}
+
+@keyframes glitch-anim {
+    0% { text-shadow: 3px 0 #ff0055, -3px 0 #00ffea; transform: translate(0); }
+    50% { text-shadow: -3px 0 #ff0055, 3px 0 #00ffea; transform: translate(-2px, 1px); }
+    100% { text-shadow: 2px 0 #ff0055, -2px 0 #00ffea; transform: translate(0); }
+}
