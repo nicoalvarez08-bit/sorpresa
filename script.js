@@ -40,7 +40,7 @@ const actionTrigger = document.getElementById("action-trigger");
 /* =====================================================
                 CONFIGURACIÓN
 ===================================================== */
-const USER_NAME = "Valentina";
+const USER_NAME = "Salomé";
 
 /* =====================================================
                 UTILIDADES
